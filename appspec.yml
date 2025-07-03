@@ -8,8 +8,8 @@ Resources:
         LoadBalancerInfo:
           TargetGroupPairInfo:
             TargetGroups:
-              - Name: {{backendtend_blue_target_group_name}}
-              - Name: {{backendend_green_target_group_name}}
+              - Name: {{backend_blue_target_group_name}}
+              - Name: {{backend_green_target_group_name}}
             ProdTrafficRoute:
               ListenerArns:
                 - {{alb_listener_arn}}

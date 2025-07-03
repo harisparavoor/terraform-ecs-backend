@@ -11,8 +11,8 @@ phases:
   pre_build:
     commands:
       - echo Replacing placeholders in appspec.yml
-      - sed -i "s|{{backend_blue_target_group_name}}|$backendend_blue_target_group_name|g" appspec.yml
-      - sed -i "s|{{backendend_green_target_group_name}}|$backendtend_green_target_group_name|g" appspec.yml
+      - sed -i "s|{{backend_blue_target_group_name}}|$backend_blue_target_group_name|g" appspec.yml
+      - sed -i "s|{{backend_green_target_group_name}}|$backend_green_target_group_name|g" appspec.yml
       - sed -i "s|{{alb_listener_arn}}|$alb_listener_arn|g" appspec.yml
       - echo "Here is the final appspec.yml after replacement:"
       - cat appspec.yml
