@@ -1,9 +1,15 @@
+---
 version: 0.0
 Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: ""   # CodeDeploy will replace this with the new task definition during deployment
+        TaskDefinition: ""
         LoadBalancerInfo:
-          ContainerName: "backend"
-          ContainerPort: 8080
+          TargetGroupPairInfo:
+            TargetGroups:
+              - Name: {{backendtend_blue_target_group_name}}
+              - Name: {{backendend_green_target_group_name}}
+            ProdTrafficRoute:
+              ListenerArns:
+                - {{alb_listener_arn}}
