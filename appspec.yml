@@ -6,10 +6,11 @@ Resources:
       Properties:
         TaskDefinition: "{{task_definition}}"
         LoadBalancerInfo:
-          TargetGroupPairInfo:
-            TargetGroups:
-              - Name: "{{backend_blue_target_group_name}}"
-              - Name: "{{backend_green_target_group_name}}"
-            ProdTrafficRoute:
-              ListenerArns:
-                - "{{alb_listener_arn}}"
+          TargetGroupPairInfoList:
+            - TargetGroupPairInfo:
+                TargetGroups:
+                  - Name: "{{backend_blue_target_group_name}}"
+                  - Name: "{{backend_green_target_group_name}}"
+                ProdTrafficRoute:
+                  ListenerArns:
+                    - "{{alb_listener_arn}}"
