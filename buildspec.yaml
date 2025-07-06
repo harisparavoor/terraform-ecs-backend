@@ -10,13 +10,13 @@ phases:
 
   pre_build:
     commands:
-      - echo Replacing placeholders in appspec.yaml
-      - sed -i "s|{{backend_blue_target_group_name}}|$backend_blue_target_group_name|g" appspec.yaml
-      - sed -i "s|{{backend_green_target_group_name}}|$backend_green_target_group_name|g" appspec.yaml
-      - sed -i "s|{{task_definition}}|$task_definition|g" appspec.yaml
-      - sed -i "s|{{alb_listener_arn}}|$alb_listener_arn|g" appspec.yaml
-      - echo "Here is the final appspec.yaml after replacement:"
-      - cat appspec.yaml
+      - echo Replacing placeholders in appspec.json
+      - sed -i "s|{{backend_blue_target_group_name}}|$backend_blue_target_group_name|g" appspec.json
+      - sed -i "s|{{backend_green_target_group_name}}|$backend_green_target_group_name|g" appspec.json
+      - sed -i "s|{{task_definition}}|$task_definition|g" appspec.json
+      - sed -i "s|{{alb_listener_arn}}|$alb_listener_arn|g" appspec.json
+      - echo "Here is the final appspec.json after replacement:"
+      - cat appspec.json
       - echo Logging in to Amazon ECR...
       - aws --version
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
@@ -41,5 +41,5 @@ phases:
 
 artifacts:
   files:
-    - appspec.yaml
+    - appspec.json
     - imagedefinitions.json
