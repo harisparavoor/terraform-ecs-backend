@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 0.0,
   "Resources": [
     {
       "TargetService": {
@@ -7,30 +7,11 @@
         "Properties": {
           "TaskDefinition": "{{task_definition}}",
           "LoadBalancerInfo": {
-            "TargetGroupPairInfoList": [
-              {
-                "TargetGroupPairInfo": {
-                  "TargetGroups": [
-                    {
-                      "Name": "{{backend_blue_target_group_name}}"
-                    },
-                    {
-                      "Name": "{{backend_green_target_group_name}}"
-                    }
-                  ],
-                  "ProdTrafficRoute": {
-                    "ListenerArns": [
-                      "{{alb_listener_arn}}"
-                    ]
-                  }
-                }
-              }
-            ]
-          },
-          "PlatformVersion": "1.4.0"
+            "ContainerName": "backend",
+            "ContainerPort": 8080
+          }
         }
       }
     }
-  ],
-  "Hooks": []
+  ]
 }
