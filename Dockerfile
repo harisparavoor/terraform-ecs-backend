@@ -1,7 +1,20 @@
-FROM openjdk:17-jdk-slim
+FROM public.ecr.aws/amazoncorretto/amazoncorretto:17
 #FROM 532607548077.dkr.ecr.us-east-1.amazonaws.com/mynodeapp-backend-dev:latest
+
 WORKDIR /app
+
+# Install Maven (Corretto uses yum, not apt)
+RUN yum install -y maven && yum clean all
+
+# Copy project files
 COPY pom.xml .
 COPY src ./src
-RUN apt-get update && apt-get install -y maven && mvn clean package -DskipTests
-CMD ["java", "-jar", "target/react-and-spring-data-rest-0.0.1-SNAPSHOT.jar"]
+
+# Build the application
+RUN mvn clean package -DskipTests
+
+# Rename JAR dynamically (no hardcoding)
+RUN cp target/*.jar app.jar
+
+# Run application
+CMD ["java", "-jar", "app.jar"]
